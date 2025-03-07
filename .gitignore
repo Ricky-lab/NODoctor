@@ -1,0 +1,6 @@
+
+*.csv
+/scripts/Java-project
+/scripts/output
+/scripts/results
+*.txt
