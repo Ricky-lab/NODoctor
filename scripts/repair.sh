@@ -13,7 +13,7 @@ mainDir=/home/azureuser/flaky
 curDir=$(pwd)
 logDir=$(pwd)/${resdir}/${timeStamp}
 patchDir=${logDir}/goodPatches
-stash=/home/azureuser/flaky/stash.sh
+# stash=/home/azureuser/flaky/stash.sh
 detailRes=${logDir}/detailRes.csv
 summaryRes=${logDir}/summaryRes.csv
 unfixedCsv=${logDir}/unfixed.csv
@@ -30,10 +30,10 @@ exec 1>$logDir/$timeStamp.log 2>&1
 cd ${mainDir}
 echo "* "CURRENT DIR $(pwd)
 
-echo bash -x ${stash} ${inputCsv} projects
-bash -x ${stash} ${inputCsv} projects
+# echo bash -x ${stash} ${inputCsv} projects
+# bash -x ${stash} ${inputCsv} projects
 
-echo python3 ${fixScript} ${inputCsv} ${cloneDir} ${apiKey} ${detailRes} ${summaryRes} ${patchDir} ${unfixedCsv} |&tee ${logDir}/main.log
-python3 ${fixScript} ${inputCsv} ${cloneDir} ${apiKey} ${detailRes} ${summaryRes} ${patchDir} ${unfixedCsv} |&tee ${logDir}/main.log
+echo python3 ${fixScript} ${inputCsv} ${cloneDir} ${apiKey} ${detailRes} ${summaryRes} ${patchDir} ${unfixedCsv} | tee ${logDir}/main.log
+python3 ${fixScript} ${inputCsv} ${cloneDir} ${apiKey} ${detailRes} ${summaryRes} ${patchDir} ${unfixedCsv} 2>&1 | tee ${logDir}/main.log
 
 echo "* "ENDING at $(date)
